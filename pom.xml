@@ -5,57 +5,20 @@
     <artifactId>aws-sam-java-rest</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>A sample REST application built on SAM and DynamoDB</name>
-
-    <scm>
-        <url>git@github.com:awslabs/aws-sam-java-rest.git</url>
-        <tag>1.0.0</tag>
-    </scm>
-
-    <developers>
-        <developer>
-            <name>Alexander Patrikalakis</name>
-            <email>amcpatrikalakis@gmail.com</email>
-            <url>https://www.linkedin.com/in/amcpatrix/</url>
-        </developer>
-        <developer>
-            <name>Anubha Mandal</name>
-            <email>anubhamandal@gmail.com</email>
-            <url>https://www.linkedin.com/in/anubhamandal/</url>
-        </developer>
-        <developer>
-            <name>Shashank Saxena</name>
-            <email>saxena.shashank96@gmail.com</email>
-            <url>https://www.linkedin.com/in/shank96/</url>
-        </developer>
-        <developer>
-            <name>Jacob Fuss</name>
-            <email>jfuss@amazon.com</email>
-            <url>https://www.linkedin.com/in/jacob-fuss-11878731/</url>
-        </developer>
-        <developer>
-            <name>Mario Freitas</name>
-            <email>supmario@amazon.co.jp</email>
-            <url>https://www.linkedin.com/in/mariofreitas/</url>
-        </developer>
-    </developers>
-    <inceptionYear>2018</inceptionYear>
-    <licenses>
-        <license>
-            <name>MIT No Attribution</name>
-            <url>https://spdx.org/licenses/MIT-0.html</url>
-        </license>
-    </licenses>
+    <name>A sample REST API built using Lambda, DynamoDB, S3</name>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
-        <aws.lambda.java.core.version>1.1.0</aws.lambda.java.core.version>
-        <aws.sdk.version>2.0.0-preview-11</aws.sdk.version>
+
+        <aws.lambda.java.core.version>1.2.0</aws.lambda.java.core.version>
+        <aws.sdk.version>2.7.35</aws.sdk.version>
         <dynamodblocal.version>1.11.119</dynamodblocal.version>
+
         <lombok.version>1.18.2</lombok.version>
         <dagger.version>2.16</dagger.version>
+
         <junit.version>4.12</junit.version>
         <mockito.version>2.0.2-beta</mockito.version>
         <maven.shade.plugin.version>3.1.1</maven.shade.plugin.version>
@@ -74,12 +37,23 @@
         </dependency>
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
+            <artifactId>aws-sdk-java</artifactId>
+            <version>${aws.sdk.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
             <artifactId>dynamodb</artifactId>
             <version>${aws.sdk.version}</version>
         </dependency>
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>apache-client</artifactId>
+            <version>${aws.sdk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>s3</artifactId>
             <version>${aws.sdk.version}</version>
         </dependency>
         <dependency>
@@ -109,9 +83,13 @@
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk-dynamodb</artifactId>
-            <version>1.11.380</version>
+            <version>1.11.623</version>
             <scope>test</scope>
             <exclusions>
+                <exclusion>
+                    <artifactId>org.apache.httpcomponents</artifactId>
+                    <groupId>httpclient</groupId>
+                </exclusion>
                 <exclusion>
                     <artifactId>jackson-dataformat-cbor</artifactId>
                     <groupId>com.fasterxml.jackson.dataformat</groupId>
@@ -143,12 +121,12 @@
             <dependency>
                 <groupId>io.netty</groupId>
                 <artifactId>netty-codec-http</artifactId>
-                <version>4.1.26.Final</version>
+                <version>4.1.33.Final</version>
             </dependency>
             <dependency>
                 <groupId>io.netty</groupId>
                 <artifactId>netty-handler</artifactId>
-                <version>4.1.26.Final</version>
+                <version>4.1.33.Final</version>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>

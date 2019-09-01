@@ -19,7 +19,7 @@ Resources:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: target/aws-sam-java-rest-1.0.0.jar
-      Handler: com.amazonaws.handler.GetOrderHandler::handleRequest
+      Handler: GetOrderHandler::handleRequest
       Runtime: java8
       Events:
         GetOrder:
@@ -31,7 +31,7 @@ Resources:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: target/aws-sam-java-rest-1.0.0.jar
-      Handler: com.amazonaws.handler.GetOrdersHandler::handleRequest
+      Handler: GetOrdersHandler::handleRequest
       Runtime: java8
       Events:
         GetOrders:
@@ -43,7 +43,7 @@ Resources:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: target/aws-sam-java-rest-1.0.0.jar
-      Handler: com.amazonaws.handler.UpdateOrderHandler::handleRequest
+      Handler: UpdateOrderHandler::handleRequest
       Runtime: java8
       Events:
         UpdateOrder:
@@ -55,7 +55,7 @@ Resources:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: target/aws-sam-java-rest-1.0.0.jar
-      Handler: com.amazonaws.handler.DeleteOrderHandler::handleRequest
+      Handler: DeleteOrderHandler::handleRequest
       Runtime: java8
       Events:
         DeleteOrder:
@@ -67,7 +67,7 @@ Resources:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: target/aws-sam-java-rest-1.0.0.jar
-      Handler: com.amazonaws.handler.CreateOrderHandler::handleRequest
+      Handler: CreateOrderHandler::handleRequest
       Runtime: java8
       Events:
         CreateOrder:
@@ -79,7 +79,7 @@ Resources:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: target/aws-sam-java-rest-1.0.0.jar
-      Handler: com.amazonaws.handler.CreateOrdersTableHandler::handleRequest
+      Handler: CreateOrdersTableHandler::handleRequest
       Runtime: java8
       Events:
         CreateOrdersTable:
@@ -87,7 +87,18 @@ Resources:
           Properties:
             Path: /_create_orders_table
             Method: post
-
+  GetS3ObjectFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: target/aws-sam-java-rest-1.0.0.jar
+      Handler: GetS3ObjectFunction::handleRequest
+      Runtime: java8
+      Events:
+        GetOrders:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /s3object
+            Method: get
 Outputs:
     HelloWorldApi:
       Description: "API Gateway endpoint URL for Prod stage for Hello World function"
@@ -116,3 +127,7 @@ Outputs:
     CreateOrdersTableFunction:
       Description: "CreateOrdersTable Lambda Function ARN"
       Value: !GetAtt CreateOrdersTableFunction.Arn
+
+    GetS3ObjectFunction:
+      Description: "GetS3Object Lambda Function ARN"
+      Value: !GetAtt GetS3ObjectFunction.Arn

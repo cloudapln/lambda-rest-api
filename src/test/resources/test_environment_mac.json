@@ -22,5 +22,9 @@
     "CreateOrdersTableFunction": {
         "ENDPOINT_OVERRIDE": "http://docker.for.mac.localhost:8000",
         "TABLE_NAME": "orders_table"
+    },
+    "GetS3ObjectFunction": {
+        "ENDPOINT_OVERRIDE": "http://docker.for.mac.localhost:8000",
+        "BUCKET_NAME": "lambda-rest-api-order-bucket"
     }
 }
